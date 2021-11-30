@@ -1,7 +1,7 @@
 import socket
 import threading
 
-PORT = 50007
+PORT = 4448
 LOCALHOST = 'localhost'
 
 class server(threading.Thread):
@@ -14,9 +14,13 @@ class server(threading.Thread):
         while True:
             data = self.csocket.recv(2048)
             message = data.decode()
-            print("Client message ", message)
             if message == "quit":
                 break
+            elif message.startswith('echo '):
+                message = message.split('echo ',1)
+                if len(message) == 2:
+                    message = message[1]
+            print("Client message ", message)
             self.csocket.send(bytes(message,'UTF-8'))
 
 if __name__ == "__main__":
