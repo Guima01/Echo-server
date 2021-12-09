@@ -1,7 +1,7 @@
 import socket
 
 SERVER = 'localhost'
-PORT = 4448
+PORT = 4444
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect((SERVER, PORT))
 message = "|| Connected ||"

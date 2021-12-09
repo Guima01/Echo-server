@@ -1,7 +1,7 @@
 import socket
 import threading
 
-PORT = 4448
+PORT = 4444
 LOCALHOST = 'localhost'
 
 class server(threading.Thread):
@@ -20,7 +20,9 @@ class server(threading.Thread):
                 message = message.split('echo ',1)
                 if len(message) == 2:
                     message = message[1]
-            print("Client message ", message)
+                    if message == '':
+                        message = ' '
+            print("Client message: ", message)
             self.csocket.send(bytes(message,'UTF-8'))
 
 if __name__ == "__main__":
